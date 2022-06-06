@@ -1,20 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { faker } from "@faker-js/faker";
-const data = [
-  { name: "Yomgir", duration: 10 },
-  { name: "Salom", duration: 3 },
-  { name: "Yoshlar", duration: 2 },
-  { name: "Kechir", duration: 6 },
-];
+import { useDispatch, useSelector } from "react-redux";
+import { songReducer } from "./reducers/songReducer";
+import { store } from "./store/store";
+import { selectAction } from "./actions/songAction";
 
 const ListMusic = (props) => {
-  const [selectSong, setSelectSong] = useState({});
-  const selecting = (val) => {
-    setSelectSong(data[val]);
-  };
-  useEffect(() => {
-    props.get(selectSong);
-  }, [selectSong]);
+  const data = useSelector((state) => state.songs);
+  const dispatch = useDispatch();
 
   const renderHTML = () => {
     return data.map((val, ind) => {
@@ -26,9 +19,7 @@ const ListMusic = (props) => {
             Durtion of music: {val.duration}
           </div>
           <button
-            onClick={() => {
-              selecting(ind);
-            }}
+            onClick={() => dispatch(selectAction(data[ind]))}
             className="ui primary basic button"
           >
             Select

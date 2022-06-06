@@ -3,18 +3,14 @@ import ListMusic from "./ListMusic";
 import SelectMusic from "./SelectMusic";
 
 const App = () => {
-  const [song, setSong] = useState("");
-  const getSong = (val) => {
-    setSong(val);
-  };
   return (
     <div class="ui placeholder segment">
       <div class="ui two column very relaxed stackable grid">
         <div class="column">
-          <ListMusic get={getSong} />
+          <ListMusic />
         </div>
         <div class="middle aligned column">
-          <SelectMusic set={song} />
+          <SelectMusic />
         </div>
       </div>
       <div class="ui vertical divider">Or</div>
